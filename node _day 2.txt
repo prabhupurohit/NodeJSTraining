@@ -1,0 +1,163 @@
+Steps:
+
+	npm install cordova 
+
+	npm install ionic
+
+	Create an app:
+	ionic start myapp tabs
+
+
+	Optionally:
+	ionic platform add android
+	
+	To test in Browser:
+	ionic serve
+
+	To test in simulator:
+	ionic emulate android
+
+
+
+
+
+Express 4.x
+
+npm install express
+
+npm install express-generator
+
+express customer_total
+
+Day 2
+-----
+
+Node env provides v8 JavaScript engine
+Non-blocking and event driven
+------------------------------
+require() is used to fetch/import a module
+
+we use exports to expose a module
+
+fs, http. mysql, mocha, chai and request
+
+request(url, function(err, response, body){
+		
+});
+
+chai is an assertion library
+mocha provides a unit testing framework, which internally can use chai assertion library
+mocha checks test spec js in "test" folder
+exeute using: 
+mocha --reporter spec
+mocha --reporter dot
+mocha --reporter list
+
+or using: npm run test[ configured in package.json]
+-----------------------------------------------------
+
+
+Express 4.x Framework
+---------------------
+framework provides a skelton code for building
+traditional web applications and RESTful services
+
+npm install express -g
+npm install express-generator -g
+
+
+or
+npm install express  express-generator -g
+
+Express uses JADE/EJS for server side templates like ASP/ JSP with JSTL / themyleaf
+ 
+ Generate Express skeleton app:
+ C:\Users\Banu Prakash\Desktop\ge\nodews>express -e express_app
+
+ Install depdendencies:
+ C:\Users\Banu Prakash\Desktop\ge\nodews\express_app>npm install
+
+
+morgan --->  Logging library
+ejs ---> Template engine
+express ---> framework
+body-parser ---> JSON/ XML/ etc handling
+cookie-parser --> handling cookies
+
+Folders created:
+1) public [ similar to "webapp" or "inetpub\www\root" folder]
+	place where html/css/js to be executed on browser will be placed
+	Angular app place it here
+
+2) views
+	contains "ejs"/ "jade" / "handlebars" ---> server side templates
+
+3) routes
+	contains routes to handle different URIs
+
+File: app.js
+Entry point for your express
+This file internall is called by bin/www
+
+Add mysql dependency:
+npm install mysql --save
+
+create "dao" folder
+add customerDao.js
+
+Add promise API:
+npm install bluebird --save
+
+---------------------
+
+FLOW
+
+http://localhost:3000/customer
+checks in app.js and finds [app.use('/customer', customer);]
+
+app.use('/customer', customer); refers to ROUTE [var customer = require('./routes/customer'); ]
+
+invokes customer.js present in  ('./routes/customer');
+
+
+route/cusotmer.js gets var CustomerDao = require('../dao/CustomerDao');
+
+In customer Route
+Maps the GET reequest to router.get('/'
+Inside invoke customerDao.findAll(), once promise is reolved get the customers
+and set it into key {customers: customers}
+
+res.render("customer", {"title": "S", {customers: customers}) ;
+
+The above line gets  customer.ejs in views folder and renders it
+
+
+-----------------------------------------------------------
+
+mongodb ---> Humangous DB
+
+RDBMS 											MongoDB
+Database 										Database
+TABLE 											collection
+columns 										fileds
+
+MongoDB stores data using BSON [ Binary Script Object Notation ]
+
+Start the database:
+mongod --dbpath "C:\Users\Banu Prakash\Desktop\ge\data"
+
+Import records from json file into mogodb "customers" collection:
+mongoimport --db customer_db --collection customers --drop --file customers.json
+
+Open CLI:
+$ mongo
+> use customer_db
+
+------------------
+
+NODEJS -- > MONGODB connection use "mongoose"
+npm install mongoose --save
+
+mongoose is an ODM -. Object data Mapping like ORM [ sequilize for mysql/pg]
+
+

@@ -1,0 +1,23 @@
+
+Angular Flow:
+
+	1) open index.html [ng-app="main_module"] <-- bootstrap with main_module
+	2) Click on any link
+		$locationChangeStart event is triggered
+		a) we have configured listener to listen to $locationChangeStart
+		b) call back for $locationChangeStart checks if user is logged by using $cookeStore
+			if cookie is avaialble redirect hime to selected page
+			else login.html
+
+			All the above config is done in main.cfg.js
+			a) Router ---> $routeProvider.when('/customers' , {})
+			b) check --> .run(check) ---> function check() { // logic to validate cookie }
+	3) Once we select /customers after checking if user has logged
+		redirects to a template --> customer.html
+	4) In the template customer.html we have bound controllers CustomerMenuController
+		and CustomerListController
+		these controllers are loaded
+	5) While loading CustomerListController we have injected CustomerService
+		We get all customers from CustomerService and store in $scope
+	6) as soon as $scope changes, view is re-rendered
+
